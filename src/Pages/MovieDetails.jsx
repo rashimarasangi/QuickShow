@@ -3,12 +3,12 @@ import { useParams } from 'react-router-dom'
 import { dummyDateTimeData, dummyShowsData } from '../assets/assets'
 import BlurCircle from '../Components/BlurCircle'
 import { Heart, PlayCircleIcon, StarIcon } from 'lucide-react'
+import DateSelect from '../Components/DateSelect'
 
 const MovieDetails = () => {
   const { id } = useParams()
   const [show, setShow] = useState(null)
 
-  // Added timeFormat so it exists
   const timeFormat = (mins) => {
     const hours = Math.floor(mins / 60)
     const minutes = mins % 60
@@ -57,15 +57,36 @@ const MovieDetails = () => {
             <button className='flex items-center gap-2 px-7 py-3 text-sm bg-gray-800 hover:bg-gray-900 transition rounded-md font-medium cursor-pointer active:scale-95'>
               <PlayCircleIcon className='w-5 h-5'/>
               Watch Trailer
-              </button>
-            <a href="" className='px-10 py-3 text-sm bg-primary hover:bg-primary-dull transition rounded-md font-medium cursor-pointer active:scale-95'>Buy Tickets</a>
+            </button>
+            <a
+              href="#dateSelect"
+              className='px-10 py-3 text-sm bg-primary hover:bg-primary-dull transition rounded-md font-medium cursor-pointer active:scale-95'
+            >
+              Buy Tickets
+            </a>
             <button className='bg-gray-700 p-2.5 rounded-full transition cursor-pointer active:scale-95'>
-              <Heart className={`w-5 h-5`}/>
+              <Heart className='w-5 h-5'/>
             </button>
           </div>
-
         </div>
       </div>
+
+      <p className='text-lg font-medium mt-20'>Your Favourite Cast</p>
+      <div className='overflow-x-auto no-scrollbar mt-8 pb-4'>
+        <div className='flex items-center gap-4 w-max px-4'>
+          {show.movie.casts.slice(0, 12).map((cast, index) => (
+            <div key={index}>
+              <img
+                src={cast.profile_path}
+                alt=""
+                className='rounded-full h-20 md:h-20 aspect-square object-cover'
+              />
+              <p className='font-medium text-xs mt-3'>{cast.name}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <DateSelect dateTime={show.dateTime} id={id}/>
     </div>
   ) : (
     <div>Loading...</div>
