@@ -1,10 +1,12 @@
 import React from 'react'
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { dummyDateTimeData, dummyShowsData } from '../assets/assets'
+import { assets, dummyDateTimeData, dummyShowsData } from '../assets/assets'
 import { useEffect } from 'react'
 import Loading from '../Components/Loading'
 import { ClockIcon } from 'lucide-react'
+import isoTimeFormat from '../lib/isoTimeFormat'
+import BlurCircle from '../Components/BlurCircle'
 
 const SeatLayout = () => {
 
@@ -36,15 +38,21 @@ const SeatLayout = () => {
         <p className='text-lg font-semibold px-6'>Available Timings</p>
         <div className='mt-5 space-y-1'>
           {show.dateTime[date].map((item)=>(
-            <div className={`flex items-center gap-2 px-6 py-2 w-max rounded-r-md cursor-pointer transition ${selectedTime?.time === item.time ? "bg-primary text-white " : "hover:bg-primary/20"}`}>
+            <div key={item.time} onClick={()=> setSelectedTime(item)} className={`flex items-center gap-2 px-6 py-2 w-max rounded-r-md cursor-pointer transition ${selectedTime?.time === item.time ? "bg-primary text-white " : "hover:bg-primary/20"}`}>
               <ClockIcon className='w-4 h-4'/>
-              <p className='text-sm'>{item.time}</p>
+              <p className='text-sm'>{isoTimeFormat(item.time)}</p>
               </div>
           ))}
         </div>
       </div>
       {/* Seat layout */}
-      <div></div>
+      <div className='relative flex-1 flex flex-col items-center max-md:mt-16'>
+       <BlurCircle top="-100px" left="-100px"/>
+       <BlurCircle bottom="0" right="0"/>
+       <h1 className='text-2xl font-semibold mb-4'>Select your seat</h1>
+       <img src={assets.screenImage} alt="screen" />
+       <p className='text-gray-400 text-sm mb-6'>SCREEN SIDE</p>
+      </div>
     </div>
   ) : (
     <Loading/>
