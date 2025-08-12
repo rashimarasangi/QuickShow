@@ -6,6 +6,7 @@ import { Heart, PlayCircleIcon, StarIcon } from 'lucide-react'
 import DateSelect from '../Components/DateSelect'
 import MovieCard from '../Components/MovieCard'
 import ReactPlayer from 'react-player'
+import Loading from '../Components/Loading'
 
 const MovieDetails = () => {
   const navigate = useNavigate()
@@ -105,9 +106,7 @@ const MovieDetails = () => {
       </div>
 
     </div>
-  ) : (
-    <div>Loading...</div>
-  )
+  ) : <Loading />
 }
 
 export default MovieDetails
