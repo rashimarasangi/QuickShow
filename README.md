@@ -15,12 +15,8 @@ This project provides a user-friendly interface for browsing films, exploring sh
 
 ## 🛠️ Technologies Used
 
-- HTML5 – semantic structure of the pages  
-- CSS3 – styling, layouts, responsive media queries  
-- JavaScript (or optionally a framework like React/Vue) – UI interactions  
-- Optional libraries: Icon sets, animation libraries (if used)  
-- Responsive design practices to support multiple device sizes  
-
+- React.js – For building a fast and responsive user interface
+- Tailwind CSS – For modern, utility-first styling and responsive design
 
 
 ## 🚀 Getting Started
